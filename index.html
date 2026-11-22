@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Разработка сайтов для бизнеса — Портфолио</title>
+  <meta name="description" content="Создание быстрых одностраничных сайтов и посадочных страниц для локального бизнеса за 1–2 дня. Оплата после проверки.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --surface: #FFFFFF;
+      --surface-hover: #F1F5F9;
+      --border: rgba(15, 23, 42, 0.08);
+      --border-strong: rgba(2, 132, 199, 0.22);
+      --text-main: #0F172A;
+      --text-muted: #475569;
+      --accent: #0284C7;
+      --accent-hover: #0369A1;
+      --accent-soft: #E0F2FE;
+
+      --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      --container: 1180px;
+      --radius: 14px;
+      --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        padding: 0 32px;
+      }
+    }
+
+    /* =========================================
+       1. HERO SECTION + SKY CLOUD SHADER (100dvh)
+       ========================================= */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      overflow: hidden;
+      background: linear-gradient(180deg, #0EA5E9 0%, #38BDF8 55%, #BAE6FD 100%);
+    }
+
+    #cloud-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero-sky-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 42%, rgba(3, 105, 161, 0.18) 0%, rgba(2, 132, 199, 0.32) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-nav {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .brand {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.125rem;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-shadow: 0 1px 8px rgba(3, 105, 161, 0.25);
+    }
+
+    .brand-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #0369A1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.875rem;
+      box-shadow: 0 2px 8px rgba(3, 105, 161, 0.15);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .nav-links a {
+      transition: opacity var(--transition);
+    }
+
+    .nav-links a:hover {
+      opacity: 0.75;
+    }
+
+    .nav-cta {
+      padding: 7px 16px;
+      border-radius: 999px;
+      background: #FFFFFF;
+      color: #0369A1 !important;
+      font-weight: 600;
+      box-shadow: 0 2px 10px rgba(3, 105, 161, 0.15);
+      transition: transform var(--transition), background-color var(--transition) !important;
+    }
+
+    .nav-cta:hover {
+      opacity: 1 !important;
+      background: #F0F9FF;
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 600px) {
+      .nav-links a.hide-mobile {
+        display: none;
+      }
+    }
+
+    .hero-center {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+      margin: auto auto;
+      padding: 36px 0;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: #FFFFFF;
+      margin-bottom: 22px;
+      box-shadow: 0 4px 16px rgba(3, 105, 161, 0.1);
+    }
+
+    .hero-badge-pulse {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      box-shadow: 0 0 8px #FFFFFF;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.15rem, 5.5vw, 4.15rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: #FFFFFF;
+      margin-bottom: 18px;
+      text-shadow: 0 4px 24px rgba(3, 105, 161, 0.25);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 1.9vw, 1.15rem);
+      color: rgba(255, 255, 255, 0.94);
+      max-width: 600px;
+      line-height: 1.6;
+      margin-bottom: 32px;
+      text-shadow: 0 1px 12px rgba(3, 105, 161, 0.2);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 13px 26px;
+      border-radius: 999px;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      transition: transform var(--transition), background-color var(--transition), box-shadow var(--transition);
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-white {
+      background-color: #FFFFFF;
+      color: #0369A1;
+      box-shadow: 0 8px 24px rgba(3, 105, 161, 0.18);
+    }
+
+    .btn-white:hover {
+      background-color: #F0F9FF;
+      transform: translateY(-1px);
+    }
+
+    .btn-sky-glass {
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.48);
+      color: #FFFFFF;
+    }
+
+    .btn-sky-glass:hover {
+      background: rgba(255, 255, 255, 0.28);
+    }
+
+    .btn-accent {
+      background-color: var(--accent);
+      color: #FFFFFF;
+      box-shadow: 0 6px 20px rgba(2, 132, 199, 0.22);
+    }
+
+    .btn-accent:hover {
+      background-color: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background-color: #FFFFFF;
+      color: var(--text-main);
+      border: 1px solid var(--border-strong);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent-hover);
+    }
+
+    .hero-metrics {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.42);
+    }
+
+    @media (max-width: 640px) {
+      .hero-metrics {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 16px 18px;
+      }
+    }
+
+    .metric-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      .metric-item {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+      }
+    }
+
+    .metric-value {
+      font-family: var(--font-display);
+      font-size: 1.1875rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      font-variant-numeric: tabular-nums;
+      text-shadow: 0 1px 6px rgba(3, 105, 161, 0.2);
+    }
+
+    .metric-label {
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* =========================================
+       2. PORTFOLIO SHOWCASE (LIGHT SKY THEME)
+       ========================================= */
+    .section {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    @media (min-width: 768px) {
+      .section {
+        padding: 104px 0;
+      }
+    }
+
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 48px;
+      max-width: 640px;
+    }
+
+    .section-kicker {
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 2.625rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    @media (min-width: 920px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+      }
+    }
+
+    .project-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.03);
+      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+    }
+
+    .project-card:hover {
+      border-color: var(--border-strong);
+      box-shadow: 0 12px 32px rgba(2, 132, 199, 0.08);
+      transform: translateY(-2px);
+    }
+
+    /* Browser Mockup Frame */
+    .browser-window {
+      background: #F1F5F9;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .browser-bar {
+      height: 36px;
+      padding: 0 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid var(--border);
+      background: #E2E8F0;
+    }
+
+    .browser-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .browser-dots span {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #94A3B8;
+    }
+
+    .browser-url {
+      flex: 1;
+      max-width: 300px;
+      background: #FFFFFF;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 5px;
+      padding: 2px 10px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: center;
+    }
+
+    .browser-ext-link {
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      transition: color var(--transition);
+    }
+
+    .browser-ext-link:hover {
+      color: var(--accent);
+    }
+
+    /* Scaled Live Iframe Viewport */
+    .preview-viewport {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: #F8FAFC;
+    }
+
+    .preview-viewport iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1280px;
+      height: 800px;
+      border: 0;
+      transform-origin: 0 0;
+      pointer-events: none;
+    }
+
+    .preview-overlay-link {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(15, 23, 42, 0);
+      transition: background-color var(--transition);
+    }
+
+    .preview-overlay-pill {
+      opacity: 0;
+      transform: translateY(6px);
+      background: #FFFFFF;
+      border: 1px solid var(--border-strong);
+      color: var(--accent-hover);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.14);
+      transition: opacity var(--transition), transform var(--transition);
+    }
+
+    .project-card:hover .preview-overlay-link {
+      background: rgba(15, 23, 42, 0.18);
+    }
+
+    .project-card:hover .preview-overlay-pill {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Card Content */
+    .project-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+      gap: 20px;
+    }
+
+    .project-meta-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .project-niche {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .project-city {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+
+    .project-title {
+      font-family: var(--font-display);
+      font-size: 1.375rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.25;
+      color: var(--text-main);
+    }
+
+    .project-desc {
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .project-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--accent-hover);
+      background: var(--accent-soft);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .project-open-btn {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color var(--transition);
+    }
+
+    .project-open-btn:hover {
+      color: var(--accent-hover);
+    }
+
+    /* =========================================
+       3. WORK PROCESS (3 STEPS)
+       ========================================= */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .steps-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+    }
+
+    .step-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.02);
+    }
+
+    .step-num {
+      display: inline-block;
+      width: fit-content;
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-hover);
+      background: var(--accent-soft);
+      padding: 4px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.05em;
+    }
+
+    .step-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--text-main);
+    }
+
+    .step-desc {
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* =========================================
+       4. FOOTER & CTA
+       ========================================= */
+    .cta-section {
+      padding: 80px 0 48px;
+      background: linear-gradient(180deg, #F8FAFC 0%, #E0F2FE 100%);
+    }
+
+    .cta-box {
+      background: #FFFFFF;
+      border: 1px solid var(--border-strong);
+      border-radius: 20px;
+      padding: 40px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 48px;
+      box-shadow: 0 12px 36px rgba(2, 132, 199, 0.08);
+    }
+
+    @media (min-width: 860px) {
+      .cta-box {
+        flex-direction: row;
+        align-items: center;
+        padding: 52px 48px;
+      }
+    }
+
+    .cta-content {
+      max-width: 560px;
+    }
+
+    .cta-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.625rem, 3.5vw, 2.25rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+
+    .cta-desc {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(2, 132, 199, 0.15);
+      padding-top: 24px;
+    }
+
+    @media (min-width: 640px) {
+      .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================
+       1. HERO SECTION (SKY CLOUD SHADER 100dvh)
+       ========================================= -->
+  <section class="hero" id="top">
+    <canvas id="cloud-canvas" aria-hidden="true"></canvas>
+    <div class="hero-sky-overlay" aria-hidden="true"></div>
+
+    <div class="container" style="position: relative; z-index: 2; width: 100%;">
+      <header class="hero-nav">
+        <a href="#top" class="brand">
+          <span class="brand-icon">W</span>
+          <span>WEB.STUDIO</span>
+        </a>
+        <nav class="nav-links" aria-label="Навигация">
+          <a href="#projects" class="hide-mobile">Проекты</a>
+          <a href="#process" class="hide-mobile">Условия</a>
+          <a href="#contact" class="nav-cta">Обсудить сайт</a>
+        </nav>
+      </header>
+    </div>
+
+    <div class="container" style="position: relative; z-index: 2; width: 100%;">
+      <div class="hero-center">
+        <div class="hero-badge">
+          <span class="hero-badge-pulse"></span>
+          <span>Свободен для новых проектов</span>
+        </div>
+
+        <h1 class="hero-title">
+          Сайты для бизнеса,<br>которые приводят клиентов
+        </h1>
+
+        <p class="hero-subtitle">
+          Разрабатываю быстрые одностраничные сайты с прайсом, онлайн-записью и картой проезда. Запуск за 1–2 дня без предоплаты — платите только после проверки готовой страницы.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-white">
+            <span>Смотреть работы</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
+          </a>
+          <a href="#contact" class="btn btn-sky-glass">
+            <span>Написать в мессенджер</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" style="position: relative; z-index: 2; width: 100%;">
+      <div class="hero-metrics">
+        <div class="metric-item">
+          <span class="metric-value">1–2 дня</span>
+          <span class="metric-label">Срок сборки под ключ</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-value">0 ₽ предоплаты</span>
+          <span class="metric-label">Оплата после проверки демо</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-value">Mobile-First</span>
+          <span class="metric-label">Идеально на любых смартфонах</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- =========================================
+         2. PROJECTS SHOWCASE
+         ========================================= -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker">Портфолио</span>
+          <h2 class="section-title">Реализованные проекты</h2>
+          <p class="section-desc">
+            Каждый сайт адаптирован под конкретную нишу и задачу бизнеса: от быстрого заказа кофе с собой до записи на процедуры в один клик. Нажмите на превью, чтобы открыть рабочую версию.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+
+          <!-- Проект 1: Студия наращивания ресниц (Рязань) -->
+          <article class="project-card">
+            <div class="browser-window">
+              <div class="browser-bar">
+                <div class="browser-dots"><span></span><span></span><span></span></div>
+                <div class="browser-url">tvarovs14.github.io/razanresnic</div>
+                <a href="https://tvarovs14.github.io/razanresnic/" target="_blank" rel="noopener noreferrer" class="browser-ext-link" aria-label="Открыть сайт в новой вкладке">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+              </div>
+              <div class="preview-viewport">
+                <iframe src="https://tvarovs14.github.io/razanresnic/" title="Студия наращивания ресниц Рязань" loading="lazy" tabindex="-1"></iframe>
+                <a href="https://tvarovs14.github.io/razanresnic/" target="_blank" rel="noopener noreferrer" class="preview-overlay-link">
+                  <span class="preview-overlay-pill">
+                    <span>Открыть живое демо</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                  </span>
+                </a>
+              </div>
+            </div>
+
+            <div class="project-body">
+              <div>
+                <div class="project-meta-top">
+                  <span class="project-niche">Бьюти-индустрия</span>
+                  <span class="project-city">Рязань</span>
+                </div>
+                <h3 class="project-title">Студия наращивания ресниц</h3>
+                <p class="project-desc">
+                  Посадочная страница с интерактивным прайс-листом по категориям, описанием стандартов стерильности, прямой онлайн-записью и схемой проезда к БЦ «Первомайский 56».
+                </p>
+              </div>
+              <div class="project-footer">
+                <div class="project-tags">
+                  <span class="tag">Табы прайса</span>
+                  <span class="tag">Онлайн-запись</span>
+                  <span class="tag">SVG-карта</span>
+                </div>
+                <a href="https://tvarovs14.github.io/razanresnic/" target="_blank" rel="noopener noreferrer" class="project-open-btn">
+                  <span>Открыть сайт</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Проект 2: Салон красоты (Липецк) -->
+          <article class="project-card">
+            <div class="browser-window">
+              <div class="browser-bar">
+                <div class="browser-dots"><span></span><span></span><span></span></div>
+                <div class="browser-url">tvarovs14.github.io/lipetscsalon</div>
+                <a href="https://tvarovs14.github.io/lipetscsalon/" target="_blank" rel="noopener noreferrer" class="browser-ext-link" aria-label="Открыть сайт в новой вкладке">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+              </div>
+              <div class="preview-viewport">
+                <iframe src="https://tvarovs14.github.io/lipetscsalon/" title="Салон красоты Липецк" loading="lazy" tabindex="-1"></iframe>
+                <a href="https://tvarovs14.github.io/lipetscsalon/" target="_blank" rel="noopener noreferrer" class="preview-overlay-link">
+                  <span class="preview-overlay-pill">
+                    <span>Открыть живое демо</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                  </span>
+                </a>
+              </div>
+            </div>
+
+            <div class="project-body">
+              <div>
+                <div class="project-meta-top">
+                  <span class="project-niche">Салон красоты</span>
+                  <span class="project-city">Липецк</span>
+                </div>
+                <h3 class="project-title">Салон красоты на пр-те Победы</h3>
+                <p class="project-desc">
+                  Спокойный минималистичный сайт в оливково-кремовой палитре с разделением услуг по залам, быстрой записью в WhatsApp в один клик и маршрутом на Яндекс.Картах.
+                </p>
+              </div>
+              <div class="project-footer">
+                <div class="project-tags">
+                  <span class="tag">Каталог услуг</span>
+                  <span class="tag">Запись в WhatsApp</span>
+                  <span class="tag">Адаптив</span>
+                </div>
+                <a href="https://tvarovs14.github.io/lipetscsalon/" target="_blank" rel="noopener noreferrer" class="project-open-btn">
+                  <span>Открыть сайт</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Проект 3: Кофейня «Про кофе» (Белгород) -->
+          <article class="project-card">
+            <div class="browser-window">
+              <div class="browser-bar">
+                <div class="browser-dots"><span></span><span></span><span></span></div>
+                <div class="browser-url">tvarovs14.github.io/ProCoffee</div>
+                <a href="https://tvarovs14.github.io/ProCoffee/" target="_blank" rel="noopener noreferrer" class="browser-ext-link" aria-label="Открыть сайт в новой вкладке">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+              </div>
+              <div class="preview-viewport">
+                <iframe src="https://tvarovs14.github.io/ProCoffee/" title="Кофейня Про кофе Белгород" loading="lazy" tabindex="-1"></iframe>
+                <a href="https://tvarovs14.github.io/ProCoffee/" target="_blank" rel="noopener noreferrer" class="preview-overlay-link">
+                  <span class="preview-overlay-pill">
+                    <span>Открыть живое демо</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                  </span>
+                </a>
+              </div>
+            </div>
+
+            <div class="project-body">
+              <div>
+                <div class="project-meta-top">
+                  <span class="project-niche">Кофейня</span>
+                  <span class="project-city">Белгород</span>
+                </div>
+                <h3 class="project-title">Кофейня «Про кофе»</h3>
+                <p class="project-desc">
+                  Мобильная витрина для городской кофейни: интерактивное меню с фильтрацией напитков, функция предзаказа в мессенджер без очереди и построение маршрута до кофейни.
+                </p>
+              </div>
+              <div class="project-footer">
+                <div class="project-tags">
+                  <span class="tag">Предзаказ кофе</span>
+                  <span class="tag">Меню и цены</span>
+                  <span class="tag">Mobile-First</span>
+                </div>
+                <a href="https://tvarovs14.github.io/ProCoffee/" target="_blank" rel="noopener noreferrer" class="project-open-btn">
+                  <span>Открыть сайт</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Проект 4: Кофейня «SunCoffee» (Белгород) -->
+          <article class="project-card">
+            <div class="browser-window">
+              <div class="browser-bar">
+                <div class="browser-dots"><span></span><span></span><span></span></div>
+                <div class="browser-url">tvarovs14.github.io/SunCoffee</div>
+                <a href="https://tvarovs14.github.io/SunCoffee/" target="_blank" rel="noopener noreferrer" class="browser-ext-link" aria-label="Открыть сайт в новой вкладке">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+              </div>
+              <div class="preview-viewport">
+                <iframe src="https://tvarovs14.github.io/SunCoffee/" title="Кофейня SunCoffee Белгород" loading="lazy" tabindex="-1"></iframe>
+                <a href="https://tvarovs14.github.io/SunCoffee/" target="_blank" rel="noopener noreferrer" class="preview-overlay-link">
+                  <span class="preview-overlay-pill">
+                    <span>Открыть живое демо</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                  </span>
+                </a>
+              </div>
+            </div>
+
+            <div class="project-body">
+              <div>
+                <div class="project-meta-top">
+                  <span class="project-niche">Кофейня формата To-Go</span>
+                  <span class="project-city">Белгород</span>
+                </div>
+                <h3 class="project-title">Кофейня «SunCoffee»</h3>
+                <p class="project-desc">
+                  Тактильный тёплый дизайн для точки в ТЦ «Солнечный». Включает параллакс-графику, переключаемые категории напитков и выпечки, а также векторную схему расположения.
+                </p>
+              </div>
+              <div class="project-footer">
+                <div class="project-tags">
+                  <span class="tag">Интерактивное меню</span>
+                  <span class="tag">SVG-графика</span>
+                  <span class="tag">Быстрая загрузка</span>
+                </div>
+                <a href="https://tvarovs14.github.io/SunCoffee/" target="_blank" rel="noopener noreferrer" class="project-open-btn">
+                  <span>Открыть сайт</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         3. WORK PROCESS
+         ========================================= -->
+    <section class="section" id="process">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker">Как строится работа</span>
+          <h2 class="section-title">Без сложных брифов и рисков</h2>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <span class="step-num">01 / ПРОТОТИП</span>
+            <h3 class="step-title">Собираю рабочую версию</h3>
+            <p class="step-desc">
+              Изучаю вашу карточку на картах, услуги и цены. Делаю готовый макет страницы с вашим адресом, прайсом и кнопками записи.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <span class="step-num">02 / ПРАВКИ</span>
+            <h3 class="step-title">Проверяете с телефона</h3>
+            <p class="step-desc">
+              Скидываю рабочую ссылку. Вы открываете сайт со смартфона, проверяете каждую кнопку, цены и при необходимости вносите правки.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <span class="step-num">03 / ЗАПУСК</span>
+            <h3 class="step-title">Оплата и передача</h3>
+            <p class="step-desc">
+              После полного согласования вы оплачиваете работу, а я помогаю привязать домен и добавить ссылку в 2ГИС, Яндекс.Карты и соцсети.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================
+       4. FOOTER & CONTACT CTA
+       ========================================= -->
+  <footer class="cta-section" id="contact">
+    <div class="container">
+      <div class="cta-box">
+        <div class="cta-content">
+          <h2 class="cta-title">Нужен такой же сайт для вашего бизнеса?</h2>
+          <p class="cta-desc">
+            Напишите мне название вашей компании или скиньте ссылку на 2ГИС — подготовлю первый вариант за 1–2 дня.
+          </p>
+        </div>
+
+        <div class="cta-buttons">
+          <!-- ПОДСТАВЬ СВОЙ TELEGRAM USERNAME ВМЕСТО your_username -->
+          <a href="https://t.me/your_username" target="_blank" rel="noopener noreferrer" class="btn btn-accent">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+            <span>Написать в Telegram</span>
+          </a>
+
+          <!-- ПОДСТАВЬ СВОЙ НОМЕР WHATSAPP ВМЕСТО 79000000000 -->
+          <a href="https://wa.me/79000000000" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            </svg>
+            <span>WhatsApp</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Веб-разработка для локального бизнеса</span>
+        <span>Сайты под ключ · Адаптивная верстка</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================
+       SCRIPTS: SKY CLOUD SHADER & IFRAME SCALING
+       ========================================= -->
+  <script>
+    (function () {
+      'use strict';
+
+      // 1. Масштабирование превью внутри карточек
+      function scalePreviews() {
+        const viewports = document.querySelectorAll('.preview-viewport');
+        viewports.forEach(vp => {
+          const iframe = vp.querySelector('iframe');
+          if (!iframe) return;
+          const scale = vp.clientWidth / 1280;
+          iframe.style.transform = `scale(${scale})`;
+        });
+      }
+
+      scalePreviews();
+      window.addEventListener('resize', scalePreviews, { passive: true });
+
+      // 2. WebGL Sky Cloud Shader (белые кучевые облака на голубом небе)
+      const canvas = document.getElementById('cloud-canvas');
+      if (!canvas) return;
+
+      const gl = canvas.getContext('webgl', { alpha: false, antialias: false, powerPreference: 'low-power' });
+      if (!gl) return;
+
+      const vertexShaderSource = `
+        attribute vec2 a_position;
+        void main() {
+          gl_Position = vec4(a_position, 0.0, 1.0);
+        }
+      `;
+
+      const fragmentShaderSource = `
+        precision mediump float;
+        uniform vec2 u_resolution;
+        uniform float u_time;
+
+        float hash(vec2 p) {
+          return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
+        }
+
+        float noise(vec2 p) {
+          vec2 i = floor(p);
+          vec2 f = fract(p);
+          vec2 u = f * f * (3.0 - 2.0 * f);
+          return mix(
+            mix(hash(i + vec2(0.0, 0.0)), hash(i + vec2(1.0, 0.0)), u.x),
+            mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x),
+            u.y
+          );
+        }
+
+        float fbm(vec2 p) {
+          float value = 0.0;
+          float amp = 0.5;
+          mat2 rot = mat2(0.8, 0.6, -0.6, 0.8);
+          for (int i = 0; i < 6; i++) {
+            value += amp * noise(p);
+            p = rot * p * 2.03;
+            amp *= 0.5;
+          }
+          return value;
+        }
+
+        void main() {
+          vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+          vec2 p = uv * 2.0 - 1.0;
+          p.x *= u_resolution.x / u_resolution.y;
+
+          float t = u_time * 0.08;
+
+          // Сдвиг и деформация для мягких кучевых облаков
+          vec2 q = vec2(0.0);
+          q.x = fbm(p * 1.1 + vec2(t * 0.8, 0.0));
+          q.y = fbm(p * 1.1 + vec2(1.4, t * 0.3));
+
+          vec2 r = vec2(0.0);
+          r.x = fbm(p * 1.3 + 1.1 * q + vec2(1.7, 9.2) + 0.15 * t);
+          r.y = fbm(p * 1.3 + 1.1 * q + vec2(8.3, 2.8) + 0.12 * t);
+
+          float f = fbm(p * 1.2 + r * 1.2);
+
+          // Градиент ясного голубого неба (сверху насыщеннее, снизу светлее)
+          vec3 skyTop = vec3(0.055, 0.54, 0.86);     // #0E8ADC
+          vec3 skyBottom = vec3(0.45, 0.78, 0.96);   // #73C7F5
+          vec3 skyColor = mix(skyBottom, skyTop, smoothstep(0.0, 1.0, uv.y));
+
+          // Цвета облаков: легкая голубоватая тень и яркий белый верх
+          vec3 cloudShadow = vec3(0.76, 0.88, 0.97);
+          vec3 cloudWhite = vec3(0.99, 0.995, 1.0);
+
+          // Формирование плотности облаков
+          float cloudMask = smoothstep(0.36, 0.78, f + 0.15 * q.x);
+          float highlight = smoothstep(0.42, 0.85, f + r.y * 0.25);
+
+          vec3 cloudColor = mix(cloudShadow, cloudWhite, highlight);
+          vec3 finalColor = mix(skyColor, cloudColor, cloudMask * 0.92);
+
+          gl_FragColor = vec4(finalColor, 1.0);
+        }
+      `;
+
+      function compileShader(type, source) {
+        const shader = gl.createShader(type);
+        gl.shaderSource(shader, source);
+        gl.compileShader(shader);
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+          gl.deleteShader(shader);
+          return null;
+        }
+        return shader;
+      }
+
+      const vs = compileShader(gl.VERTEX_SHADER, vertexShaderSource);
+      const fs = compileShader(gl.FRAGMENT_SHADER, fragmentShaderSource);
+      if (!vs || !fs) return;
+
+      const program = gl.createProgram();
+      gl.attachShader(program, vs);
+      gl.attachShader(program, fs);
+      gl.linkProgram(program);
+      if (!gl.getProgramParameter(program, gl.LINK_STATUS)) return;
+
+      gl.useProgram(program);
+
+      const posBuffer = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, posBuffer);
+      gl.bufferData(
+        gl.ARRAY_BUFFER,
+        new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]),
+        gl.STATIC_DRAW
+      );
+
+      const posLoc = gl.getAttribLocation(program, 'a_position');
+      gl.enableVertexAttribArray(posLoc);
+      gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+      const resLoc = gl.getUniformLocation(program, 'u_resolution');
+      const timeLoc = gl.getUniformLocation(program, 'u_time');
+
+      function resizeCanvas() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+        const width = Math.floor(canvas.clientWidth * dpr);
+        const height = Math.floor(canvas.clientHeight * dpr);
+        if (canvas.width !== width || canvas.height !== height) {
+          canvas.width = width;
+          canvas.height = height;
+          gl.viewport(0, 0, width, height);
+        }
+      }
+
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas, { passive: true });
+
+      let isHeroVisible = true;
+      const heroEl = document.querySelector('.hero');
+      if ('IntersectionObserver' in window && heroEl) {
+        const obs = new IntersectionObserver(entries => {
+          isHeroVisible = entries[0].isIntersecting;
+        }, { threshold: 0.01 });
+        obs.observe(heroEl);
+      }
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let startTime = performance.now();
+
+      function render(now) {
+        if (isHeroVisible) {
+          const elapsed = prefersReducedMotion ? 15.0 : (now - startTime) * 0.001;
+          gl.uniform2f(resLoc, canvas.width, canvas.height);
+          gl.uniform1f(timeLoc, elapsed);
+          gl.drawArrays(gl.TRIANGLES, 0, 6);
+        }
+        if (!prefersReducedMotion) {
+          requestAnimationFrame(render);
+        }
+      }
+
+      requestAnimationFrame(render);
+    })();
+  </script>
+</body>
+</html>
